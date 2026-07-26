@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Admin Dashboard - CleanCity</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🛡️ Admin Dashboard</h1>
+
+    <p class="subtitle">
+        Manage and monitor all citizen complaints.
+    </p>
+
+    <div class="table-container">
+
+    <table>
+
+        <tr>
+            <th>🆔 ID</th>
+            <th>📍 Area</th>
+            <th>📝 Description</th>
+            <th>🖼️ Image</th>
+            <th>📌 Status</th>
+            <th>⚙️ Action</th>
+        </tr>
+
+        {% for complaint in complaints %}
+
+        <tr>
+
+            <td>{{ complaint[0] }}</td>
+
+            <td>{{ complaint[1] }}</td>
+
+            <td>{{ complaint[2] }}</td>
+
+            <td>
+                {% if complaint[3] %}
+                    <img src="{{ url_for('static', filename='uploads/' + complaint[3]) }}"
+                         width="120" height="90" style="object-fit: cover; border-radius: 8px;">
+                {% else %}
+                    No Image
+                {% endif %}
+            </td>
+
+            <td>
+
+                {% if complaint[4] == "Pending" %}
+                    <span class="status pending">🟡 Pending</span>
+
+                {% elif complaint[4] == "In Progress" %}
+                    <span class="status progress">🟠 In Progress</span>
+
+                {% elif complaint[4] == "Resolved" %}
+                    <span class="status resolved">🟢 Resolved</span>
+
+                {% else %}
+                    {{ complaint[4] }}
+                {% endif %}
+
+            </td>
+
+            <td>
+
+                <a href="/update/{{ complaint[0] }}" class="update-btn">
+                    🔄 Update
+                </a>
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+    </div>
+
+    <br>
+
+    <a href="/admin-logout" class="btn logout-btn">
+        🚪 Logout
+    </a>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Complaint History - CleanCity</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>📜 Complaint History</h1>
+
+    <p class="subtitle">
+        Track all the complaints you have submitted.
+    </p>
+
+    {% if complaints %}
+
+    <div class="table-container">
+
+    <table>
+
+        <tr>
+            <th>📍 Area</th>
+            <th>📝 Description</th>
+            <th>🖼️ Image</th>
+            <th>📌 Status</th>
+        </tr>
+
+        {% for complaint in complaints %}
+
+        <tr>
+
+            <td>{{ complaint[0] }}</td>
+
+            <td>{{ complaint[1] }}</td>
+
+            <td>
+                {% if complaint[2] %}
+                   <p>{{ complaint[2] }}</p>
+                   
+                    <img src="{{ url_for('static', filename='uploads/' + complaint[2]) }}"
+                         width="120" 
+                         height="90"
+                         style="object-fit: cover; border-radius: 8px;">
+                {% else %}
+                    No Image
+                {% endif %}
+            </td>
+
+            <td>
+
+                {% if complaint[3] == "Pending" %}
+                    <span class="status pending">🟡 Pending</span>
+
+                {% elif complaint[3] == "In Progress" %}
+                    <span class="status progress">🟠 In Progress</span>
+
+                {% elif complaint[3] == "Resolved" %}
+                    <span class="status resolved">🟢 Resolved</span>
+
+                {% else %}
+                    {{ complaint[3] }}
+                {% endif %}
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+    </div>
+
+    {% else %}
+
+    <p>No complaints submitted yet.</p>
+
+    {% endif %}
+
+    <br>
+
+    <a href="/dashboard" class="btn">
+        ⬅ Back to Dashboard
+    </a>
+
+</div>
+
+</body>
+
+</html>

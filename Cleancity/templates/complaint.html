@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Register Complaint - CleanCity</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🗑️ Register Complaint</h1>
+
+    <p class="subtitle">
+        Help keep your surroundings clean by reporting garbage issues.
+    </p>
+
+    {% if success %}
+<p class="success-message">
+    ✅ Complaint submitted successfully! Thank you for your contribution.
+    </p>
+   {% endif %}
+
+<form method="POST" enctype="multipart/form-data">
+
+        <label><b>📍 Area / Location</b></label>
+
+        <input
+            type="text"
+            name="area"
+            placeholder="Enter Area Name"
+            required>
+
+        <br><br>
+
+        <label><b>📝 Complaint Description</b></label>
+
+        <textarea
+            name="description"
+            rows="5"
+            placeholder="Describe the garbage issue..."
+            required></textarea>
+
+        <br><br>
+
+        <label><b>📷 Upload Image (Optional)</b></label>
+
+        <input
+            type="file"
+            name="image">
+
+        <br><br>
+
+        <button type="submit" class="btn">
+            🚀 Submit Complaint
+        </button>
+
+    </form method="POST"enctype="multipart/form-data">
+
+    <br>
+
+    <a href="/dashboard" class="btn">
+        ⬅ Back to Dashboard
+    </a>
+
+</div>
+
+</body>
+</html>
