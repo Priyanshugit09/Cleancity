@@ -46,5 +46,5 @@ CleanCity/
 - AI-based Garbage Detection
 - Mobile Application
 
-## Developed By
-PRIYANSHU MISHRA
+## Developed BY
+PRIYANSHU MISHRA 
