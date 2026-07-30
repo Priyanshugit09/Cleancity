@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard - CleanCity</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>👋 Welcome, {{ user }}!</h1>
+
+    <p class="subtitle">
+        Citizen Dashboard
+    </p>
+
+    <div class="dashboard-grid">
+
+        <a href="/complaint" class="dashboard-card">
+
+            <div class="card-icon">🗑️</div>
+
+            <h2>Register Complaint</h2>
+
+            <p>
+                Report garbage issues in your locality.
+            </p>
+
+        </a>
+
+        <a href="/history" class="dashboard-card">
+
+            <div class="card-icon">📜</div>
+
+            <h2>Complaint History</h2>
+
+            <p>
+                View and track all your submitted complaints.
+            </p>
+
+        </a>
+
+        <a href="/logout" class="dashboard-card logout-card">
+
+            <div class="card-icon">🚪</div>
+
+            <h2>Logout</h2>
+
+            <p>
+                Securely sign out of your account.
+            </p>
+
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>
