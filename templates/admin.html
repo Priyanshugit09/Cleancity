@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard | CleanCity</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body class="auth-page">
+
+<div class="container history-container">
+
+    <h1>Admin Dashboard</h1>
+
+    <p class="subtitle">
+        Manage and update garbage complaints.
+    </p>
+
+    <div class="table-container">
+
+        <table>
+
+            <tr>
+
+                <th>ID</th>
+                <th>Area</th>
+                <th>Description</th>
+                <th>Image</th>
+                <th>Status</th>
+                <th>Action</th>
+
+            </tr>
+
+            {% for complaint in complaints %}
+
+            <tr>
+
+                <td>{{ complaint[0] }}</td>
+
+                <td>{{ complaint[1] }}</td>
+
+                <td>{{ complaint[2] }}</td>
+
+                <td>
+
+                    <img
+                    src="{{ url_for('static', filename='uploads/' + complaint[3]) }}"
+                    class="history-image">
+
+                </td>
+
+                <td>
+
+                    <span class="status {{ complaint[4]|lower|replace(' ','') }}">
+                        {{ complaint[4] }}
+                    </span>
+
+                </td>
+
+                <td>
+
+                    <a href="/update/{{ complaint[0] }}" class="update-btn">
+                        Update
+                    </a>
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+    <div style="text-align:center; margin-top:30px;">
+    <a href="/logout" class="btn logout-btn" style="display:inline-block; width:220px;">
+        🚪 Logout
+    </a>
+</div>
+
+</div>
+
+</body>
+</html>

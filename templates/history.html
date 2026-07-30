@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Complaint History | CleanCity</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body class="auth-page">
+
+<div class="container history-container">
+
+    <h1>Complaint History</h1>
+
+    <p class="subtitle">
+        Track all your submitted complaints.
+    </p>
+
+    <div class="table-container">
+
+        <table>
+
+            <tr>
+
+                <th>Area</th>
+
+                <th>Description</th>
+
+                <th>Image</th>
+
+                <th>Status</th>
+
+            </tr>
+
+            {% for complaint in complaints %}
+
+            <tr>
+
+                <td>{{ complaint[0] }}</td>
+
+                <td>{{ complaint[1] }}</td>
+
+                <td>
+
+                    <img
+                    src="{{ url_for('static', filename='uploads/' + complaint[2]) }}"
+                    class="history-image">
+
+                </td>
+
+                <td>
+
+                    <span class="status {{ complaint[3]|lower|replace(' ','') }}">
+                        {{ complaint[3] }}
+                    </span>
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+    <br>
+
+    <a href="/dashboard" class="btn">
+        Back to Dashboard
+    </a>
+
+</div>
+
+</body>
+</html>
